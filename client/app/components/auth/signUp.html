@@ -1,0 +1,62 @@
+<div class="text-center" style="padding:50px 0">
+	<div class="logo">Register</div>
+	<!-- Main Form -->
+	<div class="login-form-1">
+		<form id="register-form" name="userRegistrationForm" class="text-left" data-ng-submit="authVm.signUp(user)">
+			<div class="login-form-main-message"></div>
+			<div class="main-login-form">
+				<div class="login-group">
+					<div class="form-group">
+						<label for="reg_fullname" class="sr-only">Full Name</label>
+						<input type="text" class="form-control" id="reg_fullname" name="name" data-ng-model="user.name" placeholder="full name" required />
+					</div>
+					<div class="form-group" data-ng-if="userRegistrationForm.name.$dirty" data-ng-messages="userRegistrationForm.name.$error" role="alert">
+						<div data-ng-message="required" style="font-size: smaller; color: red;">{{ 'auth.messages.required' | translate }}</div>
+					</div>
+					<div class="form-group">
+						<label for="reg_email" class="sr-only">Email</label>
+						<input type="email" class="form-control" id="reg_email" name="email" data-ng-model="user.email" placeholder="email" required />
+					</div>
+					<div class="form-group" data-ng-if="userRegistrationForm.email.$dirty" data-ng-messages="userRegistrationForm.email.$error" role="alert">
+						<div data-ng-message="required" style="font-size: smaller; color: red;">{{ 'auth.messages.required' | translate }}</div>
+						<div data-ng-message="email" style="font-size: smaller; color: red;">{{ 'auth.messages.email' | translate }}</div>
+					</div>
+					<div class="form-group">
+						<label for="reg_username" class="sr-only">Username</label>
+						<input type="text" class="form-control" id="reg_username" name="username" data-ng-model="user.username" placeholder="username" required />
+					</div>
+					<div class="form-group" data-ng-if="userRegistrationForm.username.$dirty" data-ng-messages="userRegistrationForm.username.$error" role="alert">
+						<div data-ng-message="required" style="font-size: smaller; color: red;">{{ 'auth.messages.required' | translate }}</div>
+					</div>
+					<div class="form-group">
+						<label for="reg_password" class="sr-only">Password</label>
+						<input type="password" class="form-control" id="reg_password" name="password" data-ng-model="user.password" placeholder="password" data-ng-minlength="8" data-ng-maxlength="20" required />
+					</div>
+					<div class="form-group" data-ng-show="userRegistrationForm.password.$dirty" data-ng-messages="userRegistrationForm.password.$error" role="alert">
+						<div data-ng-message="required" style="font-size: smaller; color: red;">{{ 'auth.messages.required' | translate }}</div>
+						<div data-ng-message="minlength" style="font-size: smaller; color: red;">{{ 'auth.messages.tooShort' | translate }}</div>
+						<div data-ng-message="maxlength" style="font-size: smaller; color: red;">{{ 'auth.messages.tooLong' | translate }}</div>
+					</div>
+					<div class="form-group">
+						<label for="reg_password_confirm" class="sr-only">Password Confirm</label>
+						<input type="password" class="form-control" id="reg_password_confirm" name="confirmPassword" data-ng-model="user.confirmPassword" placeholder="confirm password" required />
+					</div>
+					<div class="form-group" data-ng-show="userRegistrationForm.confirmPassword.$dirty" role="alert">
+						<div data-ng-if="user.password && user.password !== user.confirmPassword" style="font-size: smaller; color: red;">{{ 'auth.messages.mismatch' | translate }}</div>
+						<div data-ng-if="!user.password" style="font-size: smaller; color: red;">{{ 'auth.messages.prevRequired' | translate }}</div>
+					</div>
+				</div>
+				<button type="submit" class="login-button">
+					<span class="fa fa-chevron-right"></span>
+				</button>
+			</div>
+			<div class="etc-login-form">
+				<p>
+					Already have an account?
+					<a ui-sref="login">Login here</a>
+				</p>
+			</div>
+		</form>
+	</div>
+	<!-- end:Main Form -->
+</div>

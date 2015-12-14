@@ -1,0 +1,30 @@
+<div class="menu">
+    <div class="status">
+        <span class="fa" data-ng-class="{'fa-circle': mainVm.socket.status, 'fa-circle-o': !mainVm.socket.status}" style="color: limegreen;"></span>
+        &nbsp;
+        <a href="" translate="main.status" data-ng-bind="mainVm.socket.status ? 'Online' : 'Offline'"></a>
+    </div>
+    <div class="logout">
+        <a href="/api/logout" translate="main.logout">Logout</a>
+    </div>
+</div>
+<div class="row" style="margin-top: 3%; margin-bottom: -1%;">
+    <div class="col-sm-2">
+        <legend style="font-size: medium;" translate="main.users"></legend>
+        <div class="users-list" style="overflow-y: overlay;">
+            <ul class="list-group" data-ng-init="mainVm.initUsers()">
+                <li class="list-group-item" style="dislay: inline-block;" data-ng-repeat="user in mainVm.users">
+                    <span data-ng-bind="user.name + ' (' + user.username + ')'"></span>
+                    <span class="fa fa-circle pull-right" style="color: {{ user.$status ? 'green' : 'red' }}; font-size: small; margin-top: 1px;"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-10">
+        <div class="text-center" style="margin-bottom: 10px;">
+            <button class="btn btn-default" data-ng-class="{'active': channel.$selected}" type="button" data-ng-repeat="channel in mainVm.channels" data-ng-click="selectChannel(channel)" translate="{{ channel.title }}"></button>
+        </div>
+        <chat active-channel="mainVm.activeChannel" chat-messages="mainVm.messages" after-chat-inited="mainVm.afterChatInited(channels)" after-join-to-chat="mainVm.afterJoinToChat(channel, messages)" after-get-message="mainVm.afterGetMessage(channel, message)" online-users="mainVm.refreshOnlineUsers(users)"></chat>
+    </div>
+</div>
+<chat-input channel="mainVm.activeChannel"></chat-input >

@@ -1,0 +1,18 @@
+<div>
+    <div class="chat-scrollbar" style="overflow-y: overlay;" scroll-to-bottom="chatMessages">
+        <div class="text-center">
+            <button class="btn btn-default btn-sm text-muted" type="button" style="margin-bottom: 5px;" data-ng-click="loadMore()" translate="main.loadMore"></button>
+            <div class="alert alert-info" style="margin: auto; padding: 5px; width: 50%;" data-ng-show="warnLoad" translate="main.noMoreMessages"></div>
+        </div>
+        <ol class="chat">
+            <li data-ng-repeat="message in chatMessages track by $index" data-ng-class="{'other': message.user._id !== user, 'self': message.user._id === user}">
+                <div class="msg">
+                    <div class="user">{{ message.user.name }}</div>
+                    <p data-ng-if="message.message" data-ng-bind-html="message.message | htmlToPlainText"></p>
+                    <img data-ng-src="{{ message.image.preview }}" data-ng-click="openLightbox(message.image)" style="cursor: pointer;" />
+                    <time>{{ message.time | date:'dd.MM.yyyy, HH:mm:ss' }}</time>
+                </div>
+            </li>
+        </ol>
+    </div>
+</div>

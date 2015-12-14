@@ -1,0 +1,26 @@
+{
+    "auth": {
+        "messages": {
+            "required": "Field is required",
+            "tooShort": "Field must be longer",
+            "tooLong": "Field must be shorter",
+            "mismatch": "Must match the previous entry",
+            "prevRequired": "The previous field must be filled",
+            "email": "Your email is invalid"
+        }
+    },
+    "main": {
+        "status": "Your status",
+        "logout": "Logout",
+        "leaveComment": "Leave comment if you want",
+        "publicChannel": "Public chat",
+        "loadMore": "Load earlier messages",
+        "noMoreMessages": "No more messages",
+        "users": "Users",
+        "imageFormatInvalid": "Invalid image format",
+        "yourFile": "your file",
+        "fail": "Fail",
+        "warning": "Warning",
+        "imageRequired": "Image is required"
+    }
+}

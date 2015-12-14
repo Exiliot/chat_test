@@ -1,0 +1,13 @@
+<div class="typezone" data-ng-show="channel">
+	<form data-ng-submit="sendMessage(message, uploadedImage);">
+		<textarea type="text" placeholder="{{ 'main.leaveComment' | translate }}" data-ng-model="message" data-ng-maxlength="1000" data-ng-focus="imageFileInputActivate(); focused = true;" data-ng-blur="focused = false;"></textarea>
+		<div data-ng-if="uploadedImage" data-ng-show="focused" class="uploaded-image">
+			<button type="button" class="btn btn-xs btn-default" data-ng-click="removeImage(image)">
+				<span class="fa fa-times"></span>
+			</button>
+			<img data-ng-src="{{ uploadedImage.preview }}" />
+		</div>
+		<input id="imageFileInput" type="file" style="display: none;" nv-file-select uploader="uploader" />
+		<button type="submit" class="send" data-ng-disabled="uploader.isUploading"></button>
+	</form>
+</div>
