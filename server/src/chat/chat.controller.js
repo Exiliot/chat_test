@@ -11,6 +11,8 @@ exports.getListOfChannels = function(userId, callback) {
                 mode: 0 // public channel
             }, {
                 owner: userId
+            }, {
+                invited: userId
             }]
         }, function(err, chatChannels) {
             if (err) {
@@ -145,4 +147,63 @@ exports.writeMessage = function(data, callback) {
                 });
         }
     });
+};
+
+exports.getChannelByOwner = function(userId, callback) {
+    ChatChannel
+        .findOne({
+            owner: userId
+        }, function(err, chatChannel) {
+            if (err) {
+                callback(err);
+            } else {
+                if (chatChannel) {
+                    callback(null, chatChannel);
+                } else {
+                    require('../user/user.model')
+                        .findById(userId, function(err, user) {
+                            if (err) {
+                                callback(err);
+                            } else {
+                                if (user) {
+                                    var newChatChannel = new ChatChannel({
+                                        title: user.username + '\'s room',
+                                        mode: 1,
+                                        owner: userId
+                                    });
+                                    newChatChannel.save(function(err) {
+                                        if (err) {
+                                            callback(err);
+                                        } else {
+                                            callback(null, newChatChannel);
+                                        }
+                                    });
+                                } else {
+                                    callback('Wrong user ID');
+                                }
+                            }
+                        });
+                }
+            }
+        });
+};
+
+exports.inviteToRoom = function(data, callback) {
+    ChatChannel
+        .update({
+            _id: data.channel
+        }, {
+            $addToSet: {
+                invited: {
+                    $each: data.invitedUsers
+                }
+            }
+        }, function(err, numAffected) {
+            if (err) {
+                callback(err);
+            } else {
+                console.log('updated', numAffected);
+                callback();
+            }
+        });
 };

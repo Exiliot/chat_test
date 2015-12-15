@@ -1,5 +1,5 @@
 <div class="text-center" style="padding:50px 0">
-	<div class="logo">Login</div>
+	<div class="logo" translate="auth.login">Login</div>
 	<!-- Main Form -->
 	<div class="login-form-1">
 		<div data-ng-if="authVm.loginErr" class="alert alert-danger" style="padding: 5px; margin-bottom: 5px;" data-ng-bind="authVm.loginErr"></div>
@@ -9,11 +9,11 @@
 				<div class="login-group">
 					<div class="form-group">
 						<label for="lg_username" class="sr-only">Username</label>
-						<input type="text" class="form-control" id="lg_username" name="lg_username" data-ng-model="user.username" placeholder="username" />
+						<input type="text" class="form-control" id="lg_username" data-ng-model="user.username" placeholder="{{ 'auth.username' | translate }}" />
 					</div>
 					<div class="form-group">
 						<label for="lg_password" class="sr-only">Password</label>
-						<input type="password" class="form-control" id="lg_password" name="lg_password" data-ng-model="user.password" placeholder="password" />
+						<input type="password" class="form-control" id="lg_password" data-ng-model="user.password" placeholder="{{ 'auth.password' | translate }}" />
 					</div>
 				</div>
 				<button type="submit" class="login-button">
@@ -22,8 +22,8 @@
 			</div>
 			<div class="etc-login-form">
 				<p>
-					New user?
-					<a ui-sref="register">Create new account</a>
+					{{ 'auth.newUserQ' | translate }}
+					<a ui-sref="register" translate="auth.createAccount">Create new account</a>
 				</p>
 			</div>
 		</form>

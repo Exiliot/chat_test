@@ -15,7 +15,11 @@ var ChatChannelSchema = new Schema({
     owner: {
         type: Schema.ObjectId,
         ref: 'User'
-    }
+    },
+    invited: [{
+        type: Schema.ObjectId,
+        ref: 'User'
+    }]
 });
 
 ChatChannelSchema.on('init', function(model) {

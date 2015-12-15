@@ -984,3 +984,7 @@ div.uploaded-image button {
         right: 10px;
     }
 }
+
+.modal-dialog {
+    padding-top: 10%;
+}

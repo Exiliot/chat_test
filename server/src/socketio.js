@@ -95,6 +95,28 @@ module.exports = function(server, store) {
             }, data.skip);
         });
 
+        socket.on('chat:createRoom', function() {
+            chatController.getChannelByOwner(user, function(err, channel) {
+                if (err) {
+                    console.log('Error while getting room by owner', err);
+                } else {
+                    socket.emit('chat:roomCreated', channel);
+                }
+            });
+        });
+
+        socket.on('chat:inviteToRoom', function(data) {
+            chatController.inviteToRoom(data, function(err) {
+                if (err) {
+                    console.log('Error while inviting users to the room', err);
+                } else {
+                    require('lodash').forEach(data.invitedUsers, function(invitedUser) {
+                        io.emit('chat:invitedToRoom:' + invitedUser);
+                    });
+                }
+            });
+        });
+
         socket.on('disconnect', function() {
             console.log('<-- Chat - user disconnected', user);
             if (users.indexOf(user) !== -1) {

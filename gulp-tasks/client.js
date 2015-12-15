@@ -86,8 +86,12 @@ gulp.task('client:serve', function(cb) {
             middleware: [proxyServer],
             routes: {
                 '/bower_components': 'bower_components'
+                // '/images/uploaded': 'images/uploaded'
             }
-        }
+        },
+        serveStatic: ['./images/uploaded'],
+        ghostMode: false,
+        logConnections: true
         //browser: ['google chrome', 'firefox', 'internet explorer'],
         // browser: ['google-chrome']
     }, cb);

@@ -71,7 +71,7 @@ exports.signUp = function(req, res) {
                         from: 'Support Service ✔ <support@acrm.io>',
                         to: user.email,
                         subject: 'Welcome to awesome chat!',
-                        html: '<p style="margin:10px 0 0 0">Your chat account has been created!<br><br>Your username is: <strong>' + user.username + '</strong><br><br>Your password: ' + req.body.password + '</p>'
+                        html: '<p style="margin:10px 0 0 0">Your chat account has been created!<br><br>Your username is: <strong>' + user.username + '</strong><br><br>Your password: <strong>' + req.body.password + '</strong></p>'
                     };
 
                     transporter.sendMail(mailOptions, function(err, info) {

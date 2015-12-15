@@ -7,13 +7,15 @@ angular.module('app').factory('Socket', function($rootScope) {
     var socket = io.connect(baseUrl);
 
     return {
-        on: function(eventName, callback) {
-            socket.on(eventName, function() {
-                var args = arguments;
-                $rootScope.$apply(function() {
-                    callback.apply(socket, args);
+        on: function(eventName, callback, replace) {
+            if (!replace || replace && !socket.hasListeners(eventName)) {
+                socket.on(eventName, function() {
+                    var args = arguments;
+                    $rootScope.$apply(function() {
+                        callback.apply(socket, args);
+                    });
                 });
-            });
+            }
         },
         emit: function(eventName, data, callback) {
             socket.emit(eventName, data, function() {

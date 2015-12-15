@@ -20,6 +20,7 @@
 
                     onlineUsers: '&',
                     onLoadEarlierMessages: '&',
+                    onRoomCreated: '&',
 
                     afterMessageEdited: '&',
                     afterMessageRemoved: '&'
@@ -38,12 +39,13 @@
                     };
 
                     scope.loadMore = function() {
-                        console.log('in loadMore');
+                        // console.log('in loadMore');
                         Socket.emit('chat:loadEarlierMessages', {
                             channel: scope.activeChannel._id,
                             skip: scope.chatMessages.length
                         });
                     };
+
                 },
                 controller: function($scope) {
                     $scope.listeningChannels = [];
@@ -53,19 +55,30 @@
                         Socket.status = 1;
                         $scope.user = userId;
                         Socket.emit('chat:init');
+
+                        Socket.on('chat:invitedToRoom:' + userId, function() {
+                            Socket.emit('chat:init');
+                        }, true);
                     });
 
                     Socket.on('chat:inited', function(channels) {
                         $scope.channels = channels;
                         $scope.afterChatInited({
-                            channels: channels
+                            channels: channels,
+                            user: $scope.user
                         });
                     });
 
                     Socket.on('chat:onlineUsers', function(users) {
-                        console.log('chat:onlineUsers', users);
+                        // console.log('chat:onlineUsers', users);
                         $scope.onlineUsers({
                             users: users
+                        });
+                    });
+
+                    Socket.on('chat:roomCreated', function(channel) {
+                        $scope.onRoomCreated({
+                            channel: channel
                         });
                     });
 
@@ -86,7 +99,7 @@
                                 channel: channel,
                                 message: message
                             });
-                        });
+                        }, true);
 
                         Socket.on('chat:earlierMessages:' + channel._id, function(data) {
                             console.log('chat:earlierMessages:' + channel._id, data);

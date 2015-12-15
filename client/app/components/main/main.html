@@ -22,9 +22,11 @@
     </div>
     <div class="col-sm-10">
         <div class="text-center" style="margin-bottom: 10px;">
-            <button class="btn btn-default" data-ng-class="{'active': channel.$selected}" type="button" data-ng-repeat="channel in mainVm.channels" data-ng-click="selectChannel(channel)" translate="{{ channel.title }}"></button>
+            <button class="btn btn-default" data-ng-class="{'active': channel.$selected}" style="margin-left: 3px;"  type="button" data-ng-repeat="channel in mainVm.channels" data-ng-click="mainVm.selectChannel(channel)" translate="{{ channel.title }}"></button>
+            <button class="btn btn-default" style="margin-left: 3px;" data-ng-hide="mainVm.isOwnRoom" data-ng-click="mainVm.createRoom()" translate="main.createRoom"></button>
+            <button class="btn btn-default" style="margin-left: 3px;" data-ng-show="mainVm.activeChannel.mode === 1 && mainVm.user === mainVm.activeChannel.owner" data-ng-click="mainVm.inviteToRoom()" translate="main.inviteToRoom"></button>
         </div>
-        <chat active-channel="mainVm.activeChannel" chat-messages="mainVm.messages" after-chat-inited="mainVm.afterChatInited(channels)" after-join-to-chat="mainVm.afterJoinToChat(channel, messages)" after-get-message="mainVm.afterGetMessage(channel, message)" online-users="mainVm.refreshOnlineUsers(users)"></chat>
+        <chat active-channel="mainVm.activeChannel" chat-messages="mainVm.messages" after-chat-inited="mainVm.afterChatInited(channels, user)" after-join-to-chat="mainVm.afterJoinToChat(channel, messages)" after-get-message="mainVm.afterGetMessage(channel, message)" online-users="mainVm.refreshOnlineUsers(users)" on-room-created="mainVm.onRoomCreated(channel)"></chat>
     </div>
 </div>
 <chat-input channel="mainVm.activeChannel"></chat-input >

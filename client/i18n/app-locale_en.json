@@ -1,5 +1,15 @@
 {
     "auth": {
+        "login": "Login",
+        "username": "username",
+        "password": "password",
+        "newUserQ": "New user?",
+        "createAccount": "Create new account",
+        "register": "Register",
+        "fullName": "full name",
+        "passConfirm": "confirm password",
+        "haveAccount": "Already have an account?",
+        "loginHere": "Login here",
         "messages": {
             "required": "Field is required",
             "tooShort": "Field must be longer",
@@ -21,6 +31,8 @@
         "yourFile": "your file",
         "fail": "Fail",
         "warning": "Warning",
-        "imageRequired": "Image is required"
+        "imageRequired": "Image is required",
+        "createRoom": "Create room",
+        "inviteToRoom": "Invite to my room"
     }
 }
