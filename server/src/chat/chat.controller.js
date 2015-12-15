@@ -36,7 +36,7 @@ exports.getMessagesForChannel = function(chatChannel, callback, skip) {
                 time: -1
             }
         }, {
-            $skip: skip * n || 0
+            $skip: skip || 0
         }, {
             $limit: n
         }, {

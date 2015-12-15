@@ -18,7 +18,8 @@ var ChatMessageSchema = new Schema({
     },
     image: {
         file: String,
-        preview: String
+        preview: String,
+        background: String
     },
     time: {
         type: Date,

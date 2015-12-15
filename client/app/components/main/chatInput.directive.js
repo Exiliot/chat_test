@@ -44,7 +44,8 @@
                         console.log('onSuccessItem', item, response);
                         scope.uploadedImage = {
                             file: 'http://localhost:3002' + response.file,
-                            preview: 'http://localhost:3002' + response.preview
+                            preview: 'http://localhost:3002' + response.preview,
+                            background: response.background
                         };
                     };
 

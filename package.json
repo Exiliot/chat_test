@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "body-parser": "^1.14.1",
+    "color-thief": "^2.2.1",
     "config": "^1.16.0",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^0.8.2",
@@ -20,6 +21,7 @@
     "mongoose": "^4.2.3",
     "multer": "^1.1.0",
     "nodemailer": "^1.10.0",
+    "onecolor": "^2.5.0",
     "request": "^2.65.0",
     "socket.io": "^1.3.7",
     "transliteration": "^0.1.1"

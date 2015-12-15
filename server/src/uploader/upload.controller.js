@@ -18,6 +18,10 @@ function rename(file, dest, user, callback) {
         if (err) {
             callback(err);
         } else {
+            var colorThief = new (require('color-thief'))(),
+                rgb = colorThief.getColor(fs.readFileSync(directory + dest + newFileName)),
+                hex = require('onecolor')('rgb(' + rgb.join(',') + ')').hex();
+
             gm(directory + dest + newFileName)
                 .size(function(err, size) {
                     console.log('SIZE!!!', size);
@@ -32,7 +36,8 @@ function rename(file, dest, user, callback) {
                                 } else {
                                     callback(null, {
                                         file: '/images/uploaded' + dest + newFileName,
-                                        preview: '/images/uploaded' + dest + 'preview_' + newFileName
+                                        preview: '/images/uploaded' + dest + 'preview_' + newFileName,
+                                        background: hex
                                     });
                                 }
                             });

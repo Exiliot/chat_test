@@ -38,6 +38,7 @@
                     };
 
                     scope.loadMore = function() {
+                        console.log('in loadMore');
                         Socket.emit('chat:loadEarlierMessages', {
                             channel: scope.activeChannel._id,
                             skip: scope.chatMessages.length
@@ -139,10 +140,11 @@
                         angular.element('.chat-scrollbar').height(newVal * 0.7029);
                     });
 
-                    $scope.openLightbox = function(image) {
+                    $scope.openLightbox = function(image, message) {
                         Lightbox.openModal([{
                             url: image.file,
-                            thumbUrl: image.preview
+                            thumbUrl: image.preview,
+                            caption: message ? message.split('<p>').join('').split('</p>').join('\n') : null
                         }], 0);
                     };
 

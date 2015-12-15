@@ -87,9 +87,9 @@ gulp.task('client:serve', function(cb) {
             routes: {
                 '/bower_components': 'bower_components'
             }
-        },
+        }
         //browser: ['google chrome', 'firefox', 'internet explorer'],
-        browser: ['google-chrome']
+        // browser: ['google-chrome']
     }, cb);
 });
 

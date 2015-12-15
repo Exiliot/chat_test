@@ -82,6 +82,7 @@ module.exports = function(server, store) {
         });
 
         socket.on('chat:loadEarlierMessages', function(data) {
+            console.log('in chat:loadEarlierMessages', data);
             chatController.getMessagesForChannel({
                 _id: data.channel
             }, function(err, messages) {

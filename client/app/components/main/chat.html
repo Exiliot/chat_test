@@ -9,7 +9,7 @@
                 <div class="msg">
                     <div class="user">{{ message.user.name }}</div>
                     <p data-ng-if="message.message" data-ng-bind-html="message.message | htmlToPlainText"></p>
-                    <img data-ng-src="{{ message.image.preview }}" data-ng-click="openLightbox(message.image)" style="cursor: pointer;" />
+                    <img data-ng-src="{{ message.image.preview }}" data-ng-click="openLightbox(message.image, message.message)" style="cursor: pointer; {{ message.image.background ? 'background: ' + message.image.background : '' }}; width: 90%;" />
                     <time>{{ message.time | date:'dd.MM.yyyy, HH:mm:ss' }}</time>
                 </div>
             </li>
