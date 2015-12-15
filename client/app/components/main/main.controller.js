@@ -27,6 +27,8 @@
                         if (channel._id === vmChannel._id) {
                             vmChannel.$selected = true;
                             ret = true;
+                        } else {
+                            vmChannel.$selected = false;
                         }
                     });
                     if (!ret) {
